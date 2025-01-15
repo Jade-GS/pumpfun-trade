@@ -17,8 +17,8 @@ import { setup } from "./setup";
         mint,
         operator,
         connection
-    } = await setup(); // pass public key of token want to buy-sell
-
+    } = await setup(new web3.PublicKey("")); // <=== pass token publicKey
+    
     const bondinfCurve = await web3.PublicKey.findProgramAddressSync(
         [Buffer.from("bonding-curve"), mint.toBuffer()],
         program.programId

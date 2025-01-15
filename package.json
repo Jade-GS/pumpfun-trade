@@ -8,9 +8,9 @@
     "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
     "start": "npx ts-node ./app/init.ts",
     "mint": "npx ts-node ./app/create_token.ts",
-    "buy": "npx ts-node ./app/buy.ts",
+    "buy": "npx ts-node ./buy.ts",
     "1buy": "npx ts-node ./app/creator_buy.ts",
-    "sell": "npx ts-node ./app/sell.ts",
+    "sell": "npx ts-node ./sell.ts",
     "withdraw": "npx ts-node ./app/withdraw.ts",
     "trade": "npx ts-node ./app/config.ts"
   },
