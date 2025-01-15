@@ -22,7 +22,7 @@ export async function setup(mint?: anchor.web3.PublicKey) {
         commitment: "confirmed",
     });
 
-    mint = mint ?? new anchor.web3.PublicKey("GqtQGba6FMcddCJJpgJxHnMtV2Akwgih2RcTdwhxGT8f")
+    mint = mint ?? new anchor.web3.PublicKey("") // <== pass token public key 
 
 
     const program = new anchor.Program(
