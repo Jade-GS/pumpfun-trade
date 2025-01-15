@@ -10,7 +10,7 @@ import { setup } from "./setup";
         program,
         user,
         mint,
-        operator,
+        
         connection
     } = await setup(new web3.PublicKey("")); // <=== pass token publicKey
 

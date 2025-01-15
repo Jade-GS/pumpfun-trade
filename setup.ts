@@ -7,10 +7,6 @@ export async function setup(mint: anchor.web3.PublicKey) {
         anchor.web3.clusterApiUrl("mainnet-beta")
     );
     const idl = require("./pump-fun.json");
-    const path_authority_key = "/auth.json";
-    const operator = anchor.web3.Keypair.fromSecretKey(
-        new Uint8Array(require(path_authority_key))
-    ) as anchor.web3.Keypair;
 
     const path_user_key = "./user.json";
     const user = anchor.web3.Keypair.fromSecretKey(
@@ -34,7 +30,6 @@ export async function setup(mint: anchor.web3.PublicKey) {
 
     return {
         program,
-        operator,
         connection,
         mint,
         user
