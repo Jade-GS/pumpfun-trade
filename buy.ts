@@ -18,16 +18,16 @@ import { setup } from "./setup";
         operator,
         connection
     } = await setup(new web3.PublicKey("")); // <=== pass token publicKey
-    
-    const bondinfCurve = await web3.PublicKey.findProgramAddressSync(
+
+    const bondingCurve = await web3.PublicKey.findProgramAddressSync(
         [Buffer.from("bonding-curve"), mint.toBuffer()],
         program.programId
     )[0];
-    console.log("🚀 ~ file: buy.ts:19 ~ bondinfCurve:", bondinfCurve)
+    console.log("🚀 ~ file: buy.ts:19 ~ bondingCurve:", bondingCurve)
 
     const associatedBondingCurve = await getAssociatedTokenAddress(
         mint,
-        bondinfCurve,
+        bondingCurve,
         true
     );
     console.log("🚀 ~ file: buy.ts:30 ~ associatedBondingCurve:", associatedBondingCurve)
