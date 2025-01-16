@@ -182,7 +182,7 @@ function main() {
                             {
                                 type: "input",
                                 name: "amount2",
-                                message: "Enter the second amount (e.g., for lamports):",
+                                message: "Enter the second amount (e.g., for sol):",
                                 validate: function (value) { return (!isNaN(Number(value)) ? true : "Please enter a valid number"); },
                             },
                         ])];
