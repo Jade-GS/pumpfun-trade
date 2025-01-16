@@ -90,7 +90,7 @@ function buy(mint, amount1, amount2) {
                         microLamports: 50000
                     });
                     return [4 /*yield*/, program.methods
-                            .buy(new anchor.BN(amount1 * 10 ^ 6), new anchor.BN(amount2 * 10 ^ 9))
+                            .buy(new anchor.BN(amount1 * Math.pow(10, 6)), new anchor.BN(amount2 * Math.pow(10, 9)))
                             .accounts({
                             mint: mint,
                             associatedBondingCurve: associatedBondingCurve,
@@ -135,7 +135,7 @@ function sell(mint, amount1, amount2) {
                         microLamports: 50000
                     });
                     return [4 /*yield*/, program.methods
-                            .sell(new anchor.BN(amount1 * 10 ^ 6), new anchor.BN(amount2 * 10 ^ 9))
+                            .sell(new anchor.BN(amount1 * Math.pow(10, 6)), new anchor.BN(amount2 * Math.pow(10, 9)))
                             .accounts({
                             mint: mint,
                             associatedBondingCurve: associatedBondingCurve,

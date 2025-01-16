@@ -1,5 +1,5 @@
 import * as anchor from "@coral-xyz/anchor";
-import { PumpFun } from "./pumpfun.js";
+import { PumpFun } from "./src/pumpfun.js";
 import { getAssociatedTokenAddress } from "@solana/spl-token";
 import { ComputeBudgetProgram } from "@solana/web3.js";
 import inquirer from "inquirer";
@@ -76,7 +76,7 @@ export async function buy(mint: anchor.web3.PublicKey, amount1: number, amount2:
 
     const signature = await program.methods
         .buy(
-            new anchor.BN(amount1 * 10 ^ 6), new anchor.BN(amount2 * 10 ^ 9)
+            new anchor.BN(amount1 * 10 ** 6), new anchor.BN(amount2 * 10 ** 9)
         )
         .accounts({
             mint,
@@ -127,7 +127,7 @@ export async function sell(mint: anchor.web3.PublicKey, amount1: number, amount2
 
     const signature = await program.methods
         .sell(
-            new anchor.BN(amount1 * 10 ^ 6), new anchor.BN(amount2 * 10 ^ 9)
+            new anchor.BN(amount1 * 10 ** 6), new anchor.BN(amount2 * 10 ** 9)
         )
         .accounts({
             mint,
