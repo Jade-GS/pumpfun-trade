@@ -1,5 +1,5 @@
 import * as anchor from "@coral-xyz/anchor";
-import { PumpFun } from "./src/pumpfun.js";
+import { PumpFun } from "./pumpfun.js";
 import { getAssociatedTokenAddress } from "@solana/spl-token";
 import { ComputeBudgetProgram } from "@solana/web3.js";
 import inquirer from "inquirer";
