@@ -6,7 +6,7 @@ import {
     getAssociatedTokenAddress,
 } from "@solana/spl-token";
 import { ComputeBudgetProgram } from "@solana/web3.js";
-import { setup } from "./setup";
+import { setup } from "./trade.js";
 
 // buy token
 (async () => {

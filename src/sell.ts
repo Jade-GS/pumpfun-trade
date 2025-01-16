@@ -2,7 +2,7 @@ import { web3 } from "@coral-xyz/anchor";
 import { getAssociatedTokenAddress } from "@solana/spl-token";
 import { ComputeBudgetProgram } from "@solana/web3.js";
 import BN from "bn.js";
-import { setup } from "./setup";
+import { setup } from "./trade.js";
 // sell token
 (async () => {
 
