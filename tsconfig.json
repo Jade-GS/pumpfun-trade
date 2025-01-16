@@ -9,6 +9,6 @@
     "outDir": "./build",
     "rootDir": "./src",
   },
-  "include": ["src/**/*", "trade.js"],
+  "include": ["src/**/*", "trade.js", "src/trade.ts"],
   "exclude": ["node_modules", "dist"]
 }

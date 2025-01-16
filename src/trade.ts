@@ -3,6 +3,11 @@ import { PumpFun } from "./pumpfun.js";
 import { getAssociatedTokenAddress } from "@solana/spl-token";
 import { ComputeBudgetProgram } from "@solana/web3.js";
 import inquirer from "inquirer"; 
+import * as dotenv from "dotenv";
+
+// Load environment variables
+dotenv.config();
+
 
 export async function setup() {
     const connection = new anchor.web3.Connection(
@@ -65,7 +70,7 @@ export async function buy(mint: anchor.web3.PublicKey) {
     });
 
     const addPriorityFee = ComputeBudgetProgram.setComputeUnitPrice({
-        microLamports: 5000
+        microLamports: 50000
     });
 
 
@@ -117,7 +122,7 @@ export async function sell(mint: anchor.web3.PublicKey) {
     });
 
     const addPriorityFee = ComputeBudgetProgram.setComputeUnitPrice({
-        microLamports: 5000
+        microLamports: 50000
     });
 
 
@@ -150,7 +155,7 @@ async function main() {
             choices: ["buy", "sell"],
         },
     ]);
-    const mint = new anchor.web3.PublicKey("GqtQGba6FMcddCJJpgJxHnMtV2Akwgih2RcTdwhxGT8f")
+    const mint = new anchor.web3.PublicKey(process.env.MINT_PUBLIC_KEY)
     if (action === "buy") {
         await buy(mint);
     } else if (action === "sell") {

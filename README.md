@@ -5,9 +5,15 @@
 yarn
 ```
 
+*Add Token public key to file .env*
+```
+MINT_PUBLIC_KEY = 123xyz...
+```
 
 *Run script JS*
 ```
 node trade.js
 ```
+
+
 

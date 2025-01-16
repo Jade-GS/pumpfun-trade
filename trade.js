@@ -41,6 +41,9 @@ var anchor = require("@coral-xyz/anchor");
 var spl_token_1 = require("@solana/spl-token");
 var web3_js_1 = require("@solana/web3.js");
 var inquirer_1 = require("inquirer");
+var dotenv = require("dotenv");
+// Load environment variables
+dotenv.config();
 function setup() {
     return __awaiter(this, void 0, void 0, function () {
         var connection, idl, path_user_key, user, wallet, provider, program;
@@ -84,7 +87,7 @@ function buy(mint) {
                         units: 42000
                     });
                     addPriorityFee = web3_js_1.ComputeBudgetProgram.setComputeUnitPrice({
-                        microLamports: 5000
+                        microLamports: 50000
                     });
                     return [4 /*yield*/, program.methods
                             .buy(new anchor.BN(357547483436), new anchor.BN(10201000))
@@ -129,7 +132,7 @@ function sell(mint) {
                         units: 42000
                     });
                     addPriorityFee = web3_js_1.ComputeBudgetProgram.setComputeUnitPrice({
-                        microLamports: 5000
+                        microLamports: 50000
                     });
                     return [4 /*yield*/, program.methods
                             .sell(new anchor.BN(357547483436), new anchor.BN(9900000))
@@ -168,7 +171,7 @@ function main() {
                     ])];
                 case 1:
                     action = (_a.sent()).action;
-                    mint = new anchor.web3.PublicKey("GqtQGba6FMcddCJJpgJxHnMtV2Akwgih2RcTdwhxGT8f");
+                    mint = new anchor.web3.PublicKey(process.env.MINT_PUBLIC_KEY);
                     if (!(action === "buy")) return [3 /*break*/, 3];
                     return [4 /*yield*/, buy(mint)];
                 case 2:
