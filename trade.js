@@ -66,7 +66,7 @@ function setup() {
     });
 }
 exports.setup = setup;
-function buy(mint) {
+function buy(mint, amount1, amount2) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, program, user, connection, bondingCurve, associatedBondingCurve, associatedUser, modifyComputeUnits, addPriorityFee, signature;
         return __generator(this, function (_b) {
@@ -90,7 +90,7 @@ function buy(mint) {
                         microLamports: 50000
                     });
                     return [4 /*yield*/, program.methods
-                            .buy(new anchor.BN(357547483436), new anchor.BN(10201000))
+                            .buy(new anchor.BN(amount1 * 10 ^ 6), new anchor.BN(amount2 * 10 ^ 9))
                             .accounts({
                             mint: mint,
                             associatedBondingCurve: associatedBondingCurve,
@@ -111,7 +111,7 @@ function buy(mint) {
     });
 }
 exports.buy = buy;
-function sell(mint) {
+function sell(mint, amount1, amount2) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, program, user, connection, bondingCurve, associatedBondingCurve, associatedUser, modifyComputeUnits, addPriorityFee, signature;
         return __generator(this, function (_b) {
@@ -135,7 +135,7 @@ function sell(mint) {
                         microLamports: 50000
                     });
                     return [4 /*yield*/, program.methods
-                            .sell(new anchor.BN(357547483436), new anchor.BN(9900000))
+                            .sell(new anchor.BN(amount1 * 10 ^ 6), new anchor.BN(amount2 * 10 ^ 9))
                             .accounts({
                             mint: mint,
                             associatedBondingCurve: associatedBondingCurve,
@@ -158,9 +158,9 @@ function sell(mint) {
 exports.sell = sell;
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var action, mint;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var action, mint, _a, amount1, amount2, parsedAmount1, parsedAmount2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0: return [4 /*yield*/, inquirer_1.default.prompt([
                         {
                             type: "list",
@@ -170,20 +170,38 @@ function main() {
                         },
                     ])];
                 case 1:
-                    action = (_a.sent()).action;
+                    action = (_b.sent()).action;
                     mint = new anchor.web3.PublicKey(process.env.MINT_PUBLIC_KEY);
-                    if (!(action === "buy")) return [3 /*break*/, 3];
-                    return [4 /*yield*/, buy(mint)];
+                    return [4 /*yield*/, inquirer_1.default.prompt([
+                            {
+                                type: "input",
+                                name: "amount1",
+                                message: "Enter the first amount (e.g., for token quantity):",
+                                validate: function (value) { return (!isNaN(Number(value)) ? true : "Please enter a valid number"); },
+                            },
+                            {
+                                type: "input",
+                                name: "amount2",
+                                message: "Enter the second amount (e.g., for lamports):",
+                                validate: function (value) { return (!isNaN(Number(value)) ? true : "Please enter a valid number"); },
+                            },
+                        ])];
                 case 2:
-                    _a.sent();
-                    return [3 /*break*/, 5];
+                    _a = _b.sent(), amount1 = _a.amount1, amount2 = _a.amount2;
+                    parsedAmount1 = Number(amount1);
+                    parsedAmount2 = Number(amount2);
+                    if (!(action === "buy")) return [3 /*break*/, 4];
+                    return [4 /*yield*/, buy(mint, parsedAmount1, parsedAmount2)];
                 case 3:
-                    if (!(action === "sell")) return [3 /*break*/, 5];
-                    return [4 /*yield*/, sell(mint)];
+                    _b.sent();
+                    return [3 /*break*/, 6];
                 case 4:
-                    _a.sent();
-                    _a.label = 5;
-                case 5: return [2 /*return*/];
+                    if (!(action === "sell")) return [3 /*break*/, 6];
+                    return [4 /*yield*/, sell(mint, parsedAmount1, parsedAmount2)];
+                case 5:
+                    _b.sent();
+                    _b.label = 6;
+                case 6: return [2 /*return*/];
             }
         });
     });
